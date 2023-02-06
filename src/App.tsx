@@ -1,26 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useContext } from 'react';
+import { useParameterContext } from './context/dataContext';
+import { Box, Stack, TextField, Typography } from '@mui/material';
+import ProductsTable from './components/ProductsTable';
+import Pagination from './components/Pagination';
+//import { useHistory, useLocation } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App: React.FC = () => {
+    const { filter, setFilter } = useParameterContext();
+
+    // const history = useHistory();
+    // const location = useLocation();
+
+    // const queryParams = new URLSearchParams(location.search)
+    // const handleFilter = (value: string) => {
+    //     setInputValue(value);
+    //     const filtered = products.filter(product => product.id === value);
+    //     setFilteredProducts(filtered);
+    //     const queryParams = new URLSearchParams();
+    //     queryParams.set("id", value);
+    //     history.push({
+    //         search: queryParams.toString()
+    //     });
+    // };
+
+    // const handlePageChange = (page: number) => {
+    //     setCurrentPage(page);
+    //     const queryParams = new URLSearchParams(location.search);
+    //     queryParams.set("page", page.toString());
+    //     history.push({
+    //         search: queryParams.toString()
+    //     });
+    // };
+
+
+
+    const handleFilterChanger = (event: React.ChangeEvent<HTMLInputElement>): void => {
+
+        const value = event.target.value;
+        const numRegex = /^[0-9\b]+$/;
+
+        if (value === '' || numRegex.test(value)) {
+            event.preventDefault();
+            setFilter(value);
+        }
+
+    };
+
+    return (
+
+        <Box maxWidth="md" mx='auto' py={2} my={5} sx={{ background: '#eee' }}>
+            <Stack direction='column' spacing={4} alignItems='center' justifyContent='center' >
+                <Typography variant='h2' textAlign='center' > Products</Typography>
+                <TextField
+                    type='text'
+                    id="filter"
+                    label="filter by id"
+                    helperText="Please enter a valid product id"
+                    variant="outlined"
+                    maxRows={1}
+                    onChange={handleFilterChanger}
+                    value={filter}
+                    sx={{ width: "100%", maxWidth: '255px' }}
+                />
+
+                <ProductsTable />
+                <Pagination />
+            </Stack>
+
+
+        </Box>
+    );
+};
+
 
 export default App;
