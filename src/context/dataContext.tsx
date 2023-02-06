@@ -82,6 +82,27 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
     }, [currentPage, filter, perPage, setProducts, setTotalNoOfPages, error, setError]);
 
 
+
+    useEffect(() => {
+
+        //Reflect the pagination and filter in the url
+        const updateURL = (): void => {
+            const queryParams = new URLSearchParams(window.location.search);
+            queryParams.set("currentPage", currentPage.toString());
+
+            if (filter !== '') {
+                queryParams.set('filter', filter);
+            }
+
+            window.history.pushState({}, "", `${window.location.pathname}?${queryParams.toString()}`);
+            console.log(window.location);
+        };
+
+        updateURL();
+    }, [filter, currentPage]);
+
+
+
     return (
         <ParametersContext.Provider value={{ perPage, currentPage, setCurrentPage, totalNoOfPages, setTotalNoOfPages, filter, setFilter, error, setError, products, setProducts }}>
             {children}

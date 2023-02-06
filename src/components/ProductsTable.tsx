@@ -4,7 +4,7 @@ import { Box, Typography, TableContainer, Table, TableBody, TableCell, TableHead
 
 const ProductsTable: React.FC = () => {
 
-    const { perPage, currentPage, setTotalNoOfPages, filter, error, setError, products, setProducts } = useParameterContext();
+    const { error, products } = useParameterContext();
 
     return (
         <Box my={2} mx='auto' width='100%'>

@@ -5,9 +5,7 @@ import Pagination from './components/Pagination';
 
 
 const App: React.FC = () => {
-    const { filter, setFilter, currentPage } = useParameterContext();
-
-
+    const { filter, setFilter } = useParameterContext();
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         event.preventDefault();
@@ -26,7 +24,6 @@ const App: React.FC = () => {
         }
 
     };
-
 
 
     return (
