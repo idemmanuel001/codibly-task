@@ -65,7 +65,7 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
                     setTotalNoOfPages(response.data.total_pages);
                     setProducts(response.data.data);
 
-                    //set the filtered product data into an array because it returns a single object instaed of an array with objects
+                    //set the filtered product data into an array because it returns a single object instaed of an array of objects
                     if (filter) {
                         setProducts([response.data.data]);
                     }
@@ -80,7 +80,6 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
 
         fetchData();
     }, [currentPage, filter, perPage, setProducts, setTotalNoOfPages, error, setError]);
-
 
 
     return (
