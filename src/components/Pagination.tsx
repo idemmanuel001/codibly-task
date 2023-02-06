@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Pagination as MUIPagination } from '@mui/material';
 import { useParameterContext } from '../context/dataContext';
 
