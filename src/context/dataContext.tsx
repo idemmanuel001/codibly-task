@@ -79,7 +79,7 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
         }
 
         fetchData();
-    }, [currentPage, filter, perPage, setProducts, setTotalNoOfPages, setError]);
+    }, [currentPage, filter, perPage, setProducts, setTotalNoOfPages, error, setError]);
 
 
 

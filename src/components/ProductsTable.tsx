@@ -6,11 +6,11 @@ const ProductsTable: React.FC = () => {
 
     const { perPage, currentPage, setTotalNoOfPages, filter, error, setError, products, setProducts } = useParameterContext();
 
-
+    console.log(error);
     return (
         <Box my={2} mx='auto' width='100%'>
             {/* consitionally rendering the error to the DOM */}
-            {error && <Typography variant='body1' textAlign='center' >{error}</Typography>}
+            {error ? <Typography variant='body1' textAlign='center' >{error}</Typography> : null}
 
             {/*Conditionally renders the array of products in a table */}
             {products && products.length ? (<TableContainer component={Paper} sx={{ my: 4, mx: 'auto' }}>

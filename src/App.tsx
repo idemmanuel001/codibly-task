@@ -35,14 +35,22 @@ const App: React.FC = () => {
 
 
 
-    const handleFilterChanger = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 
-        const value = event.target.value;
+        const rawValue = event.target.value;
         const numRegex = /^[0-9\b]+$/;
 
-        if (value === '' || numRegex.test(value)) {
+        if (rawValue === '' || numRegex.test(rawValue)) {
             event.preventDefault();
-            setFilter(value);
+            const numValue = +rawValue;
+
+            if (numValue > 0 && numValue < 12) {
+                const stringvalue = numValue.toString();
+                setFilter(stringvalue);
+            } else {
+                setFilter('');
+            }
+
         }
 
     };
@@ -59,7 +67,7 @@ const App: React.FC = () => {
                     helperText="Please enter a valid product id"
                     variant="outlined"
                     maxRows={1}
-                    onChange={handleFilterChanger}
+                    onChange={handleFilterChange}
                     value={filter}
                     sx={{ width: "100%", maxWidth: '255px' }}
                 />
