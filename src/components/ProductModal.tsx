@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Box, Modal, Button, TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import { useParameterContext, Product } from '../context/dataContext';
-import { isAbsolute } from 'path';
-import { color } from '@mui/system';
-
+import { Product } from '../context/dataContext';
 
 interface ModalProps {
     modalData: Product;
@@ -32,11 +29,11 @@ const closeBTNStyle = {
 
 const ProductModal: React.FC<ModalProps> = ({ modalData, openModal, setOpenModal }) => {
     const [closeModal, setCloseModal] = useState(true);
-    const { products } = useParameterContext();
+
 
     const handleModalClose = (): void => {
-        setOpenModal(false);
-        setCloseModal(true);
+        setOpenModal(!openModal);
+        setCloseModal(!closeModal);
     };
 
 

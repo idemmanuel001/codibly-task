@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParameterContext, Product } from '../context/dataContext';
-import { Box, Typography, TableContainer, Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@mui/material';
+import { Box, Typography, TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import ProductModal from './ProductModal';
 
 
