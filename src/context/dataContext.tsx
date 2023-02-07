@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-interface Product {
+export interface Product {
     id: string;
     name: string;
     year: string;
@@ -69,7 +69,6 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
                     if (filter) {
                         setProducts([response.data.data]);
                     }
-
                 } else {
                     throw new Error(response.data.message);
                 }
@@ -77,7 +76,6 @@ const ContextProvider: React.FC<CartProviderProps> = ({ children }) => {
                 setError(err.message);
             }
         }
-
         fetchData();
     }, [currentPage, filter, perPage, setProducts, setTotalNoOfPages, error, setError]);
 
